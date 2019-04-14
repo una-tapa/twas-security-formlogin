@@ -1,0 +1,30 @@
+<!-- tag::serverxml[] -->
+<server description="Sample Liberty server">
+
+  <featureManager>
+    <feature>javaee-7.0</feature>
+  </featureManager>
+
+  <httpEndpoint id="defaultHttpEndpoint"
+    httpPort="${server.http.port}" 
+    httpsPort="${server.https.port}" />
+
+  <include location="userRegistry.xml"/>
+
+  <application location="${application.name}" 
+               type="war"
+               id="${application.name}"
+               name="${application.name}" context-root="/">
+    <application-bnd>
+      <security-role name="admin">
+        <group name="Manager" />
+        <group name="TeamLead" />
+      </security-role>
+      <security-role name="user">
+        <group name="Employee" />
+      </security-role>
+    </application-bnd>
+  </application>
+
+</server>
+<!-- end::serverxml[] -->
